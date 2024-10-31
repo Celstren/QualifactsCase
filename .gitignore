@@ -8,7 +8,6 @@
 .buildlog/
 .history
 .svn/
-migrate_working_dir/
 
 # IntelliJ related
 *.iml
@@ -27,9 +26,18 @@ migrate_working_dir/
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
+.packages
 .pub-cache/
 .pub/
 /build/
+
+# Web related
+lib/generated_plugin_registrant.dart
+
+# Development environment
+lib/constants/config_constant/environment.dart
+lib/services/authentication_service/amplifyconfiguration.dart
+lib/services/sentry_service/sentry_configuration.dart
 
 # Symbolication related
 app.*.symbols
@@ -41,3 +49,29 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Android environment resources
+/android/app/src/main/res/values/strings.xml
+/android/app/src/main/res/values-night/strings.xml
+
+# iOS environment resources
+/ios/Runner/strings.plist
+
+# Google Services
+**/google-services.json
+**/GoogleService-Info
+
+# Exclude Freezed Files
+**/*.freezed.dart
+
+# Exclude Router Files
+**/*.gr.dart
+
+# Exclude Injection Files
+**/*.config.dart
+
+# Exclude Generated Files
+**/*.g.dart
+
+#Firebase options config
+**/app_firebase_options_config.dart

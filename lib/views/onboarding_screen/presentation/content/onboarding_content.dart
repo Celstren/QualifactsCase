@@ -68,6 +68,7 @@ class _OnboardingContentState extends State<OnboardingContent> with TickerProvid
             ),
             const SizedBox(height: 24),
             AppButton(
+              key: const ValueKey('onboarding_button_key'),
               text: 'CLICK AQUÍ',
               onTap: () => AutoRouter.of(context).replace(const DashboardPageRoute()),
             ),

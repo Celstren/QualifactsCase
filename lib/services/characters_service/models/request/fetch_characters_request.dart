@@ -14,7 +14,7 @@ class FetchCharactersRequest {
     this.species,
     this.type = '',
     this.gender,
-    this.page = 0,
+    this.page = 1,
   });
 
   FetchCharactersRequest copyWith({

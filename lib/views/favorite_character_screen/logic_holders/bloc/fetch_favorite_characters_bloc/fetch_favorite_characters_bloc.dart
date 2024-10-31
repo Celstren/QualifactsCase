@@ -18,8 +18,6 @@ class FetchFavoriteCharactersState with _$FetchFavoriteCharactersState {
   const factory FetchFavoriteCharactersState.fetchFavoriteCharactersLoadingState() = FetchFavoriteCharactersLoadingState;
   const factory FetchFavoriteCharactersState.fetchFavoriteCharactersSuccessState() = FetchFavoriteCharactersSuccessState;
   const factory FetchFavoriteCharactersState.fetchFavoriteCharactersErrorState({@Default('') String message}) = FetchFavoriteCharactersErrorState;
-  const factory FetchFavoriteCharactersState.fetchFavoriteCharactersConnectionErrorState() = FetchFavoriteCharactersConnectionErrorState;
-  const factory FetchFavoriteCharactersState.fetchFavoriteCharactersUnauthorizedState() = FetchFavoriteCharactersUnauthorizedState;
 }
 
 @injectable

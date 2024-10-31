@@ -16,8 +16,6 @@ class ValidateFavoriteCharacterState with _$ValidateFavoriteCharacterState {
   const factory ValidateFavoriteCharacterState.validateFavoriteCharacterLoadingState() = ValidateFavoriteCharacterLoadingState;
   const factory ValidateFavoriteCharacterState.validateFavoriteCharacterSuccessState({ required bool isFavorite }) = ValidateFavoriteCharacterSuccessState;
   const factory ValidateFavoriteCharacterState.validateFavoriteCharacterErrorState({@Default('') String message}) = ValidateFavoriteCharacterErrorState;
-  const factory ValidateFavoriteCharacterState.validateFavoriteCharacterConnectionErrorState() = ValidateFavoriteCharacterConnectionErrorState;
-  const factory ValidateFavoriteCharacterState.validateFavoriteCharacterUnauthorizedState() = ValidateFavoriteCharacterUnauthorizedState;
 }
 
 @injectable

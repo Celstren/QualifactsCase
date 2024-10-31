@@ -16,10 +16,8 @@ class FavoriteCharacterEvent with _$FavoriteCharacterEvent {
 class FavoriteCharacterState with _$FavoriteCharacterState {
   const factory FavoriteCharacterState.favoriteCharacterUninitializedState() = FavoriteCharacterUninitializedState;
   const factory FavoriteCharacterState.favoriteCharacterLoadingState() = FavoriteCharacterLoadingState;
-  const factory FavoriteCharacterState.favoriteCharacterSuccessState() = FavoriteCharacterSuccessState;
+  const factory FavoriteCharacterState.favoriteCharacterSuccessState({ required int id }) = FavoriteCharacterSuccessState;
   const factory FavoriteCharacterState.favoriteCharacterErrorState({@Default('') String message}) = FavoriteCharacterErrorState;
-  const factory FavoriteCharacterState.favoriteCharacterConnectionErrorState() = FavoriteCharacterConnectionErrorState;
-  const factory FavoriteCharacterState.favoriteCharacterUnauthorizedState() = FavoriteCharacterUnauthorizedState;
 }
 
 @injectable
@@ -41,16 +39,17 @@ class FavoriteCharacterBloc extends Bloc<FavoriteCharacterEvent, FavoriteCharact
             return;
           }
           final savedFavorite = await _favoriteCharacterService.getByCharacterId(characterId: characterId);
+          var id = 0;
           if (savedFavorite != null) {
-            await _favoriteCharacterService.changeFavorite(id: savedFavorite.id, isFavorite: !(savedFavorite.isFavorite ?? false));
+            id = await _favoriteCharacterService.changeFavorite(id: savedFavorite.id, isFavorite: !(savedFavorite.isFavorite ?? false));
           } else {
-            await _favoriteCharacterService.insert(
+            id = await _favoriteCharacterService.insert(
               characterId: characterId,
               characterName: character.name ?? '',
               characterImage: character.image ?? '',
             );
           }
-          emitter(const FavoriteCharacterSuccessState());
+          emitter(FavoriteCharacterSuccessState(id: id));
         },
       );
     } on DioException catch (e) {

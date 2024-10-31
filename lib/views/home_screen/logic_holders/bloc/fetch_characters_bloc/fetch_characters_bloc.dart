@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:qualifacts_case/networking/app_api_exception.dart';
 import 'package:qualifacts_case/services/characters_service/characters_service.dart';
 import 'package:qualifacts_case/services/characters_service/models/request/fetch_characters_request.dart';
 import 'package:qualifacts_case/services/characters_service/models/response/fetch_characters_response.dart';
@@ -18,11 +19,9 @@ class FetchCharactersEvent with _$FetchCharactersEvent {
 class FetchCharactersState with _$FetchCharactersState {
   const factory FetchCharactersState.fetchCharactersUninitializedState() = FetchCharactersUninitializedState;
   const factory FetchCharactersState.fetchCharactersLoadingState() = FetchCharactersLoadingState;
-  const factory FetchCharactersState.fetchFilterNextCharactersLoadingState() = FetchFilterNextCharactersLoadingState;
+  const factory FetchCharactersState.fetchNextCharactersLoadingState() = FetchNextCharactersLoadingState;
   const factory FetchCharactersState.fetchCharactersSuccessState() = FetchCharactersSuccessState;
   const factory FetchCharactersState.fetchCharactersErrorState({@Default('') String message}) = FetchCharactersErrorState;
-  const factory FetchCharactersState.fetchCharactersConnectionErrorState() = FetchCharactersConnectionErrorState;
-  const factory FetchCharactersState.fetchCharactersUnauthorizedState() = FetchCharactersUnauthorizedState;
 }
 
 @injectable
@@ -41,12 +40,14 @@ class FetchCharactersBloc extends Bloc<FetchCharactersEvent, FetchCharactersStat
     try {
       await event.when(
           fetchCharacters: (request) async {
-            request.page == 0 ? emitter(const FetchCharactersLoadingState()) : emitter(const FetchFilterNextCharactersLoadingState());
+            request.page > 1 ? emitter(const FetchNextCharactersLoadingState()) : emitter(const FetchCharactersLoadingState());
             final data = await _charactersService.fetchCharacters(request: request);
-            _characters = request.page == 0 ? data.results : [..._characters, ...data.results];
+            _characters = request.page > 1 ? [..._characters, ...data.results] : data.results;
             emitter(const FetchCharactersSuccessState());
           },
       );
+    } on AppApiException catch(e) {
+      emitter(FetchCharactersErrorState(message: e.message));
     } on DioException catch (e) {
       var data = e.response?.data is Map ? e.response?.data as Map : null;
       var message = data?['detail'] as String?;

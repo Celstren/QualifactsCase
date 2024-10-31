@@ -22,6 +22,7 @@ class CharacterResult {
   final String? image;
   final String? url;
   final String? created;
+  final String heroTag;
 
   CharacterResult({
     this.id,
@@ -35,6 +36,7 @@ class CharacterResult {
     this.image,
     this.url,
     this.created,
+    this.heroTag = '',
   });
 
   factory CharacterResult.fromJson(Map<String, dynamic> json) => CharacterResult(
@@ -49,6 +51,7 @@ class CharacterResult {
     image: json['image'],
     url: json['url'],
     created: json['created'],
+    heroTag: '${json['id'] ?? 0}',
   );
 }
 

@@ -13,17 +13,27 @@ class AppRouter extends RootStackRouter {
   List<CustomRoute> get routes => [
     CustomRoute(
       initial: true,
-      page: SplashScreenPageRoute.page,
-      path: AppRoutePath.splashScreenPath,
-    ),
-    CustomRoute(
-      page: HomePageRoute.page,
-      path: AppRoutePath.homeScreenPath,
+      page: OnboardingPageRoute.page,
+      path: AppRoutePath.onboardingScreenPath,
     ),
     CustomRoute(
       page: CharacterPageRoute.page,
       path: AppRoutePath.characterScreenPath,
       transitionsBuilder: TransitionsBuilders.slideLeft,
+    ),
+    CustomRoute(
+      page: DashboardPageRoute.page,
+      path: AppRoutePath.dashboardScreenPath,
+      children: [
+        CustomRoute(
+          page: HomePageRoute.page,
+          path: AppRoutePath.homeScreenPath,
+        ),
+        CustomRoute(
+          page: FavoriteCharacterPageRoute.page,
+          path: AppRoutePath.favoriteCharacterScreenPath,
+        ),
+      ],
     ),
   ];
 }

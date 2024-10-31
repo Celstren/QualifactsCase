@@ -1,9 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:qualifacts_case/networking/logging_interceptor.dart';
+import 'package:qualifacts_case/services/storage_service/database.dart';
 
 @module
 abstract class AppConfigModule {
+  @Singleton()
+  AppDatabase get database => AppDatabase();
+
   @LazySingleton()
   Dio get dio {
     final client = Dio();

@@ -6,14 +6,14 @@ import 'package:qualifacts_case/ui/app_button/app_button.dart';
 import 'package:qualifacts_case/ui/app_text/app_text.dart';
 import 'package:qualifacts_case/ui/palette/color_palette.dart';
 
-class SplashScreenContent extends StatefulWidget {
-  const SplashScreenContent({super.key});
+class OnboardingContent extends StatefulWidget {
+  const OnboardingContent({super.key});
 
   @override
-  State<SplashScreenContent> createState() => _SplashScreenContentState();
+  State<OnboardingContent> createState() => _OnboardingContentState();
 }
 
-class _SplashScreenContentState extends State<SplashScreenContent> with TickerProviderStateMixin {
+class _OnboardingContentState extends State<OnboardingContent> with TickerProviderStateMixin {
   late final AnimationController _controller;
 
   @override
@@ -69,7 +69,7 @@ class _SplashScreenContentState extends State<SplashScreenContent> with TickerPr
             const SizedBox(height: 24),
             AppButton(
               text: 'CLICK AQUÍ',
-              onTap: () => AutoRouter.of(context).replace(const HomePageRoute()),
+              onTap: () => AutoRouter.of(context).replace(const DashboardPageRoute()),
             ),
           ],
         ),

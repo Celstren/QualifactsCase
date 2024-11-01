@@ -100,6 +100,8 @@ class AppDebouncedTextField extends StatefulWidget {
 
 class _AppDebouncedTextFieldState extends State<AppDebouncedTextField> {
   Timer? _debounce;
+  final focusNode = FocusNode();
+  var hasFocus = false;
 
   void _onChangedDebounce(String query) {
     if (_debounce?.isActive ?? false) _debounce?.cancel();
@@ -111,8 +113,17 @@ class _AppDebouncedTextFieldState extends State<AppDebouncedTextField> {
   }
 
   @override
+  void initState() {
+    focusNode.addListener(() {
+      setState(() => hasFocus = focusNode.hasFocus);
+    });
+    super.initState();
+  }
+
+  @override
   void dispose() {
     _debounce?.cancel();
+    focusNode.dispose();
     super.dispose();
   }
 
@@ -145,7 +156,7 @@ class _AppDebouncedTextFieldState extends State<AppDebouncedTextField> {
         child: TextField(
           controller: widget.controller,
           enabled: widget.enabled,
-          focusNode: widget.focusNode,
+          focusNode: widget.focusNode ?? focusNode,
           autocorrect: widget.autocorrect,
           enableSuggestions: widget.enableSuggestions,
           obscureText: widget.obscureText,
@@ -191,7 +202,30 @@ class _AppDebouncedTextFieldState extends State<AppDebouncedTextField> {
             focusedBorder: inputHighlightBorder,
             focusedErrorBorder: errorBorder,
             prefixIcon: widget.prefix,
-            suffixIcon: widget.suffix,
+            suffixIcon: widget.suffix ?? clearIcon(),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget clearIcon() {
+    if (!hasFocus) return const SizedBox();
+    return GestureDetector(
+      onTap: () {
+        widget.controller?.clear();
+        if (widget.onSubmitted != null) {
+          widget.onSubmitted!('');
+        }
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: const SizedBox(
+        height: 20,
+        width: 20,
+        child: Center(
+          child: Icon(
+            Icons.clear,
+            color: Colors.grey,
           ),
         ),
       ),

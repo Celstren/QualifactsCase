@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qualifacts_case/injection.dart';
 import 'package:qualifacts_case/services/characters_service/models/request/fetch_characters_request.dart';
+import 'package:qualifacts_case/views/favorite_character_screen/logic_holders/bloc/fetch_favorite_characters_bloc/fetch_favorite_characters_bloc.dart';
 import 'package:qualifacts_case/views/home_screen/logic_holders/bloc/fetch_characters_bloc/fetch_characters_bloc.dart';
 import 'package:qualifacts_case/views/home_screen/logic_holders/cubit/filter_characters_cubit/filter_characters_cubit.dart';
 import 'package:qualifacts_case/views/home_screen/presentation/content/characters_list/characters_list.dart';
@@ -17,6 +18,7 @@ class HomeContent extends StatefulWidget {
 class _HomeContentState extends State<HomeContent> {
   final fetchCharactersBloc = getIt<FetchCharactersBloc>();
   final filterCharactersCubit = getIt<FilterCharactersCubit>();
+  final fetchFavoriteCharactersBloc = getIt<FetchFavoriteCharactersBloc>();
   final scrollController = ScrollController();
 
   @override
@@ -29,6 +31,7 @@ class _HomeContentState extends State<HomeContent> {
   void dispose() {
     fetchCharactersBloc.close();
     filterCharactersCubit.close();
+    fetchFavoriteCharactersBloc.close();
     scrollController.dispose();
     super.dispose();
   }
@@ -54,6 +57,7 @@ class _HomeContentState extends State<HomeContent> {
                   scrollController: scrollController,
                   filterCharactersCubit: filterCharactersCubit,
                   fetchCharactersBloc: fetchCharactersBloc,
+                  fetchFavoriteCharactersBloc: fetchFavoriteCharactersBloc,
                 ),
               ),
             ],

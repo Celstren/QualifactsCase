@@ -2,6 +2,34 @@ enum CharacterSpecies { human, alien, empty }
 enum CharacterStatus { alive, unknown, dead, empty }
 enum CharacterGender { male, female, unknown, empty }
 
+extension StringExtension on String {
+  CharacterSpecies get toSpecieEnum {
+    switch(toLowerCase()) {
+      case 'alien': return CharacterSpecies.alien;
+      case 'human': return CharacterSpecies.human;
+      default: return CharacterSpecies.empty;
+    }
+  }
+
+  CharacterStatus get toStatusEnum {
+    switch(toLowerCase()) {
+      case 'alive': return CharacterStatus.alive;
+      case 'dead': return CharacterStatus.dead;
+      case 'empty': return CharacterStatus.empty;
+      default: return CharacterStatus.unknown;
+    }
+  }
+
+  CharacterGender get toGenderEnum {
+    switch(toLowerCase()) {
+      case 'female': return CharacterGender.female;
+      case 'male': return CharacterGender.male;
+      case 'genderless': return CharacterGender.empty;
+      default: return CharacterGender.unknown;
+    }
+  }
+}
+
 extension CharacterSpeciesExtension on CharacterSpecies {
   String get filter {
     switch (this) {

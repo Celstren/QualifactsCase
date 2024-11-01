@@ -33,6 +33,7 @@ class FetchCharactersBloc extends Bloc<FetchCharactersEvent, FetchCharactersStat
   final CharactersService _charactersService;
 
   var _characters = <CharacterResult>[];
+  PaginationInfo? _info;
 
   List<CharacterResult> get characters => _characters;
 
@@ -40,9 +41,12 @@ class FetchCharactersBloc extends Bloc<FetchCharactersEvent, FetchCharactersStat
     try {
       await event.when(
           fetchCharacters: (request) async {
+            if (state is FetchNextCharactersLoadingState || state is FetchCharactersLoadingState) return;
+            if (_info != null && _info!.count != null && request.page > 1 && (_info!.pages!) <= (request.page)) return;
             request.page > 1 ? emitter(const FetchNextCharactersLoadingState()) : emitter(const FetchCharactersLoadingState());
             final data = await _charactersService.fetchCharacters(request: request);
             _characters = request.page > 1 ? [..._characters, ...data.results] : data.results;
+            _info = data.info;
             emitter(const FetchCharactersSuccessState());
           },
       );

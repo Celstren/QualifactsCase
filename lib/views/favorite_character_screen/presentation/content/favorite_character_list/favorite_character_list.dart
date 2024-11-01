@@ -26,7 +26,8 @@ class FavoriteCharacterList extends StatelessWidget {
           child: SingleChildScrollView(
             child: Wrap(
               runSpacing: 10,
-              alignment: WrapAlignment.spaceBetween,
+              spacing: 10,
+              alignment: WrapAlignment.center,
               children: fetchFavoriteCharactersBloc.characters
                   .map((c) => FavoriteCharacterListItem(
                         favoriteCharacter: c,

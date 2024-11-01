@@ -1,12 +1,38 @@
+import 'package:qualifacts_case/services/characters_service/models/enum/characters_enum.dart';
+
 class FetchCharactersResponse {
   final List<CharacterResult> results;
+  final PaginationInfo? info;
 
   FetchCharactersResponse({
     this.results = const [],
+    this.info,
   });
 
   factory FetchCharactersResponse.fromJson(Map<String, dynamic> json) => FetchCharactersResponse(
     results: json['results'] == null ? [] : List<CharacterResult>.from((json['results'] as List).map((x) => CharacterResult.fromJson(x))),
+    info: json['info'] == null ? null : PaginationInfo.fromJson(json['info']),
+  );
+}
+
+class PaginationInfo {
+  final int? count;
+  final int? pages;
+  final String? next;
+  final String? prev;
+
+  PaginationInfo({
+    required this.count,
+    required this.pages,
+    required this.next,
+    required this.prev,
+  });
+
+  factory PaginationInfo.fromJson(Map<String, dynamic> json) => PaginationInfo(
+    count: json['count'],
+    pages: json['pages'],
+    next: json['next'],
+    prev: json['prev'],
   );
 }
 

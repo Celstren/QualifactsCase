@@ -13,14 +13,15 @@ class SearchCharacter extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 24),
       child: AppDebouncedTextField(
         hint: 'Dime su nombre',
+        controller: TextEditingController(),
         fontColor: ColorsConstant.mantis,
-        debounceTime: 800,
+        debounceTime: 1500,
         onSubmitted: (query) {
-          filterCharactersCubit.change(name: query, page: 0);
+          filterCharactersCubit.change(name: query, page: 1);
           FocusManager.instance.primaryFocus?.unfocus();
         },
         onDebounceChanged: (query) {
-          filterCharactersCubit.change(name: query, page: 0);
+          filterCharactersCubit.change(name: query, page: 1);
           FocusManager.instance.primaryFocus?.unfocus();
         },
       ),

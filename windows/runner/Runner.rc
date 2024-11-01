@@ -94,7 +94,7 @@ BEGIN
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "qualifacts_case" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 pe.com.qualifacts. All rights reserved." "\0"
-            VALUE "OriginalFilename", "qualifacts_case.exe" "\0"
+            VALUE "OriginalFilename", "RikiWiki.exe" "\0"
             VALUE "ProductName", "qualifacts_case" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END

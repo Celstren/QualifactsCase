@@ -31,7 +31,7 @@ class _OnboardingContentState extends State<OnboardingContent> with TickerProvid
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -66,11 +66,13 @@ class _OnboardingContentState extends State<OnboardingContent> with TickerProvid
               fontColor: ColorsConstant.moonstone,
               fontSize: 16,
             ),
-            const SizedBox(height: 24),
-            AppButton(
-              key: const ValueKey('onboarding_button_key'),
-              text: 'CLICK AQUÍ',
-              onTap: () => AutoRouter.of(context).replace(const DashboardPageRoute()),
+            Padding(
+              padding: const EdgeInsets.only(top: 12, bottom: 24),
+              child: AppButton(
+                key: const ValueKey('onboarding_button_key'),
+                text: 'CLICK AQUÍ',
+                onTap: () => AutoRouter.of(context).replace(const DashboardPageRoute()),
+              ),
             ),
           ],
         ),

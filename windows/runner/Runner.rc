@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "pe.com.qualifacts" "\0"
-            VALUE "FileDescription", "qualifacts_case" "\0"
+            VALUE "FileDescription", "RikiWiki" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "qualifacts_case" "\0"
+            VALUE "InternalName", "RikiWiki" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 pe.com.qualifacts. All rights reserved." "\0"
             VALUE "OriginalFilename", "RikiWiki.exe" "\0"
-            VALUE "ProductName", "qualifacts_case" "\0"
+            VALUE "ProductName", "RikiWiki" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

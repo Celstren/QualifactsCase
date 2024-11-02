@@ -5,7 +5,7 @@ import 'package:qualifacts_case/services/characters_service/models/request/fetch
 
 @injectable
 class FilterCharactersCubit extends Cubit<FetchCharactersRequest> {
-  FilterCharactersCubit() : super(FetchCharactersRequest(page: 0));
+  FilterCharactersCubit() : super(FetchCharactersRequest(page: 1));
 
   void change({
     String? name,

@@ -1,5 +1,3 @@
-import 'package:qualifacts_case/services/characters_service/models/enum/characters_enum.dart';
-
 class FetchCharactersResponse {
   final List<CharacterResult> results;
   final PaginationInfo? info;

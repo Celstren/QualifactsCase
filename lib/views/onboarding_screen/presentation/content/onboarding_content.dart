@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:qualifacts_case/router/app_router.gr.dart';
 import 'package:qualifacts_case/ui/app_button/app_button.dart';
-import 'package:qualifacts_case/ui/app_text/app_text.dart';
+import 'package:qualifacts_case/ui/app_text/app_animated_text.dart';
 import 'package:qualifacts_case/ui/palette/color_palette.dart';
 
 class OnboardingContent extends StatefulWidget {
@@ -38,17 +38,13 @@ class _OnboardingContentState extends State<OnboardingContent> with TickerProvid
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            const AppText.medium(
-              'Hola Soy Rick Sánchez',
+            const SizedBox(height: 24),
+            const AppAnimatedText.medium(
+              'Hola Soy Rick Sánchez\nGustavo me pidió hacer una app de los personajes de mi serie\nAsí que empecemos',
               fontColor: ColorsConstant.moonstone,
               fontSize: 16,
             ),
             const SizedBox(height: 24),
-            const AppText.medium(
-              'Gustavo me pidió hacer una app de los personajes de mi serie',
-              fontColor: ColorsConstant.moonstone,
-              fontSize: 16,
-            ),
             Center(
               child: Lottie.asset(
                 'assets/animations/Rick_Animation.json',
@@ -60,11 +56,6 @@ class _OnboardingContentState extends State<OnboardingContent> with TickerProvid
                     ..repeat();
                 },
               ),
-            ),
-            const AppText.medium(
-              'Así que empecemos',
-              fontColor: ColorsConstant.moonstone,
-              fontSize: 16,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 12, bottom: 24),

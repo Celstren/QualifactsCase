@@ -8,6 +8,7 @@ import 'package:qualifacts_case/services/characters_service/models/enum/characte
 import 'package:qualifacts_case/services/characters_service/models/response/fetch_characters_response.dart';
 import 'package:qualifacts_case/ui/app_custom_paint/app_coach_bottom_right_indicator_painter.dart';
 import 'package:qualifacts_case/ui/app_image/app_image.dart';
+import 'package:qualifacts_case/ui/app_text/app_animated_text.dart';
 import 'package:qualifacts_case/ui/app_text/app_text.dart';
 import 'package:qualifacts_case/ui/palette/color_palette.dart';
 import 'package:qualifacts_case/views/character_screen/bloc/favorite_character_bloc/favorite_character_bloc.dart';
@@ -44,7 +45,7 @@ class _CharacterContentState extends State<CharacterContent> {
     1: 'La mente más grande de este y todos los universos. Rick Sanchez es un humano que sigue vivo viajando entre dimensiones junto a su preciado Morty.',
     2: 'Morty Smith el ayudante por excelencia de cada Rick en cada multiverso, siempre me acompaña en cada aventura.',
     3: 'Summer Smith la hija de Beth y Jerry. Hermana de Morty. Tiene un gran espíritu rebelde y siempre puedo contar con ella para limpiar algunos desastres',
-    4: 'Mi hija Beth, desde que se casó con el fracasado de Jerry no ha podido vivir su vida. Por eso le dí una oportunidad para viajar por el universo.',
+    4: 'Mi hija Beth. Vive un matrimonio aburrido con Jerry. Por eso le dí una oportunidad para viajar por el universo.',
     5: 'Jerry Smith, un fracasado cobarde, se casó con Beth y tuvo a Morty y Summer. Su mayor logro seguir con vida.',
     47: 'Mi mejor amigo, me ayudó a buscar a Rick Prime por todos los multiversos. Fue un gran amigo hasta que esa maldita lo convirtió en un cyborg. Junté sus partes y lo restauré. Ahora está en búsqueda de su hija.',
     94: 'Mi querida Diane. Desde aquel día estuve en búsqueda de Rick Prime por lo que te hizo. Desde entonces solo vive en mis recuerdos.',
@@ -215,9 +216,9 @@ class _CharacterContentState extends State<CharacterContent> {
                                   final status = widget.character.status?.toStatusEnum;
                                   switch(status){
                                     case CharacterStatus.alive:
-                                      phrase = phrase.replaceAll('{status}', 'vivo');
+                                      phrase = phrase.replaceAll('{status}', 'viva');
                                     default:
-                                      phrase = phrase.replaceAll('{status}', 'muerto');
+                                      phrase = phrase.replaceAll('{status}', 'muerta');
                                   }
                                 } else {
                                   final specie = widget.character.species?.toSpecieEnum;
@@ -238,7 +239,7 @@ class _CharacterContentState extends State<CharacterContent> {
                                   }
                                 }
                               }
-                              return AppText.normal(
+                              return AppAnimatedText.normal(
                                 phrase,
                                 fontColor: ColorsConstant.moonstone,
                                 fontSize: 20,
